@@ -3,26 +3,28 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 const fs = require("fs")
-const datapath = './data.json'
 const logger = require('./logger')
 const logic = require('./logic')
-let func = require('./functions')
+const gjv =require("geojson-validation")    
+var func = require('./functions')
 const database = undefined
 
-app.use(express.json())
-app.use(express.urlencoded({
-    extended: true
-}))
 
-app.use('/gis' , func)
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use('/gis/testpoint' , func.testpoint_middleware)
+app.get('/gis/testpoint',func.testpoint)
+app.use('/gis/addpolygon' ,func.polygon_add_middleware) 
+app.put('/gis/addpolygon' ,func.polygon_add) 
+
 
 
 app.listen(process.env.PORT , () =>{
 
-    logic.readGeoJsonFromFile(datapath)
+    logic.readGeoJsonFromFile('./src/data.json')
     console.log(`Listening on port ${process.env.PORT}` )
 });
 
-
-exports.database = database
-exports.datapath = datapath
+module.exports={
+    database
+}

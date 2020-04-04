@@ -2,7 +2,7 @@
   "name": "hw1",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js",
+  "main": "index.js",
   "scripts": {
     "start": "node src/app.js",
     "startDev": "nodemon src/app.js",
@@ -19,10 +19,13 @@
   },
   "homepage": "https://github.com/amirrezaei1999/IE-node.js#readme",
   "dependencies": {
+    "@turf/boolean-point-in-polygon": "^6.0.1",
+    "@turf/turf": "^5.1.6",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "geojson-validation": "^0.2.1",
     "point-in-polygon": "^1.0.1",
+    "robust-point-in-polygon": "^1.0.3",
     "winston": "^3.2.1"
   },
   "devDependencies": {

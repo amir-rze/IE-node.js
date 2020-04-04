@@ -24,26 +24,22 @@ const log = winston.createLogger({
     // - Write all logs error (and below) to `quick-start-error.log`.
     //
     new winston.transports.File({
-      filename: './logs/error.log',
+      filename: './src/logs/error.log',
       level: 'error',
     }),
 
     new winston.transports.File({
-      filename: './logs/combined.log',
+      filename: './src/logs/combined.log',
     }),
   ],
 });
 
-//
-// If we're not in production then **ALSO** log to the `console`
-// with the colorized simple format.
-//
-// if (process.env.NODE_ENV !== 'production') {
-//   log.add(new winston.transports.Console({
-//     format: winston.format.combine(
-//       winston.format.simple(),
-//     ),
-//   }));
-// }
+if (process.env.NODE_ENV !== 'production') {
+  log.add(new winston.transports.Console({
+    format: winston.format.combine(
+      winston.format.simple(),
+    ),
+  }));
+}
 
 module.exports.log = log;

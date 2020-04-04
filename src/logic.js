@@ -9,6 +9,9 @@ const getPolygonsCoordinates = (jsonObject) => {
     for(let feature of featuresArray)
     {
         let name = feature.properties.name
+        if(name=== undefined){
+            name = "undefined"
+        }
         let coordinates = feature.geometry.coordinates[0]
         polygonsCoordinates.set(name, coordinates)
     }
@@ -31,7 +34,7 @@ let readGeoJsonFromFile = (datapath) =>{
             })
         }
         datas.database = JSON.parse(data)
-        console.log("File Loaded to memory");
+        console.log("Database Loaded To Memory Successfully");
     })
 }
 module.exports ={
