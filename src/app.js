@@ -17,12 +17,16 @@ app.get('/gis/testpoint',func.testpoint)
 app.use('/gis/addpolygon' ,func.polygon_add_middleware) 
 app.put('/gis/addpolygon' ,func.polygon_add) 
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 
 
-app.listen(process.env.PORT , () =>{
+app.listen(port , () =>{
 
     logic.readGeoJsonFromFile('./src/data.json')
-    console.log(`Listening on port ${process.env.PORT}` )
+    console.log(`Listening on port ${port}` )
 });
 
 module.exports={
