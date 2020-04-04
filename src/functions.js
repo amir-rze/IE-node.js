@@ -18,8 +18,8 @@ let testpoint = (req,res) => {
     lat=Number(lat)
     long=Number(long)
     let point = [lat , long]
-    logic.polygonsCoordinates.forEach((polygonName , coordinates) =>{
-        if(inside(point , coordinates)){
+    logic.polygonsCoordinates.forEach((coordinates,polygonName) =>{
+        if(logic.pointInPolygon(point,coordinates)){
             response.polygons.push(polygonName)
         }
     })  
@@ -28,6 +28,7 @@ let testpoint = (req,res) => {
 
 }
 
+// inside(point , coordinates
 
 let polygon_add_middleware = (err,req,res,next) => {
     res.header('content-type', 'application/json')
